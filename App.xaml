@@ -1,0 +1,18 @@
+﻿<Application x:Class="La_Montaña.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:La_Montaña"
+             Startup="Application_Startup">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Estilos/UIcolores.xaml"/>
+                <ResourceDictionary Source="/Estilos/EstiloBotones.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>
+
+

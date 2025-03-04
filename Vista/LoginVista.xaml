@@ -1,0 +1,226 @@
+﻿<Window x:Class="La_Montaña.Vista.LoginVista"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:La_Montaña.Vista"
+        xmlns:viewModel="clr-namespace:La_Montaña.VistaModelo"
+        xmlns:ControlesPersonalizados="clr-namespace:La_Montaña.ControlesPersonalizados" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="LoginVista" Height="550" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <Window.DataContext>
+        <viewModel:LoginVistaModelo/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoleanoVisible"/>
+    </Window.Resources>
+
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BoleanoVisible}"/>
+    </Window.Visibility>
+
+
+    <Border CornerRadius="12">
+
+        <Border.Background>
+            <ImageBrush ImageSource ="/Imagenes/Fondo1.jpg"
+                        Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <Border CornerRadius="0"
+                BorderThickness="5"
+                 Opacity="0.75">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource colorP4}" Offset="0"/>
+                    <GradientStop Color="{StaticResource colorP1}" Offset="0.65"/>
+                    <GradientStop Color="{StaticResource colorP6}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="{StaticResource colorP5}" Offset="-1"/>
+                    <GradientStop Color="{StaticResource colorSegundario1}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="43"/>
+
+                        <ColumnDefinition Width="38"/>
+                        <ColumnDefinition Width="37"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Iniciar sesión"
+                               Foreground="WhiteSmoke"
+                               FontSize="12"
+                               FontFamily="Montserrat"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0" Height="14"/>
+
+                    <Button x:Name="btnMinimizar"                           
+                            Style="{StaticResource BotonControl}"
+                            Tag="{StaticResource color15}"
+                             Click="btnMinimizar_Click"  Margin="5,0,3,0" Height="30" VerticalAlignment="Center" Grid.Column="1">
+
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBotnIcono}"/>
+
+                    </Button>
+
+                    <Button x:Name="btnMaximizar"
+                                Style="{StaticResource BotonControl}"
+                                Tag="{StaticResource color15}"
+                                Click="btnMaximizar_Click"  Margin="2,0,1,0" Grid.Column="2">
+                        <fa:IconImage Icon="Maximize" Style="{StaticResource controlBotnIcono}"/>
+                    </Button>
+
+                    <Button x:Name="btnCerrar"                          
+                            Style="{StaticResource BotonControl}"
+                            Tag="{StaticResource color15}"
+                             Click="btnCerrar_Click" Margin="1,0,1,0" Grid.Column="3">
+                        <fa:IconImage Icon="Xmark" Style="{StaticResource controlBotnIcono}"/>
+
+                    </Button>
+                </Grid>
+
+                <StackPanel Width="220"
+                            Grid.Row="1"
+                            Orientation="Vertical"
+                            Margin="0,35,0,0">
+
+                    <Image Source="/Imagenes/Logo.jpg"
+                           Width="100" Height="100"/>
+
+                    <TextBlock Text="La Montaña"
+                               Foreground="LightGray"
+                               FontSize="25"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Sirviendo con pasión desde el estilo que nos gusta."
+                               Foreground="LightGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+
+
+                    <TextBlock Text="Usuario"
+                               Foreground="GhostWhite"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,35,0,0"/>
+
+                    <TextBox x:Name="txtusuario"
+                             Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="GhostWhite"
+                             CaretBrush="{StaticResource color2}"
+                             BorderBrush="#45DFB1"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0">
+
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Imagenes/user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="clave"
+                               Foreground="GhostWhite"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+
+                    <ControlesPersonalizados:CuadroClaveEnlazable Clave="{Binding Clave, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  Height="28"
+                                                                  Margin="0,5,0,0">
+
+                    </ControlesPersonalizados:CuadroClaveEnlazable>
+
+                    <TextBlock Text="{Binding MensajeError}"
+                                Foreground="#D7596D"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"                             
+                                Margin="0,10,0,0"
+                                TextWrapping="Wrap"/>
+
+
+                    <Button x:Name="btnLogin" 
+                            Command="{Binding LoginComando}"
+                            BorderThickness="0"
+                            Content="Iniciar sesión"
+                            Foreground="GhostWhite"
+                            FontSize="15"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,30,0,0">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#45DFB1"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#80ED99"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+                </StackPanel>
+
+
+            </Grid>
+
+
+        </Border>
+    </Border>
+
+</Window>

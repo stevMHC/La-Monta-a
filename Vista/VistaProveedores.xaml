@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="La_Montaña.Vista.VistaProveedores"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:La_Montaña.Vista" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Border CornerRadius="1">
+        <Border.Background>
+            <ImageBrush ImageSource="/Imagenes/Barber.jpg" Stretch="UniformToFill"/>
+        </Border.Background>
+        <Border CornerRadius="1" BorderThickness="4" Opacity="0.75">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="{StaticResource colorP5}" Offset="-1"/>
+                    <GradientStop Color="{StaticResource colorSegundario1}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- Datos -->
+                    <ColumnDefinition Width="250"/>
+                    <!-- Tabla de datos -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView Grid.Column="1"
+                          ItemsSource="{Binding Proveedores}"
+                          SelectedItem="{Binding ProveedorSeleccionado}"
+                          Margin="0,5,5,5"
+                          BorderBrush="{StaticResource color13}"
+                          BorderThickness="3"
+                          Background="{StaticResource color13}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID proveedor" DisplayMemberBinding="{Binding idProveedor}" Width="80"/>
+                            <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding nombreProvedor}" Width="150"/>
+                            <GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding telefonoProvedor}" Width="120"/>
+                            <GridViewColumn Header="Dirección" DisplayMemberBinding="{Binding DireccionProvedor}" Width="150"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Background" Value="{StaticResource color15}"/>
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Montserrat"/>
+                            <Style.Triggers>
+                                <!-- Trigger para cambiar el color de fondo y del texto cuando el mouse está sobre el elemento -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource color12}"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+
+                <Label Content="Nombre" Foreground="{StaticResource colorLiso1}" 
+                       HorizontalAlignment="Left"
+                       FontSize="15"
+                       FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       Margin="12,38,0,0"
+                       VerticalAlignment="Top" 
+                       Width="79" Height="28"/>
+                <TextBox HorizontalAlignment="Left"
+                         Margin="106,43,0,0"  
+                         TextWrapping="Wrap" 
+                         VerticalAlignment="Top" 
+                         Width="120"
+                         BorderBrush="{StaticResource color12}"
+                         Background="{StaticResource color13}"
+                         Text="{Binding Path=ProveedorActual.nombreProvedor, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Content="Teléfono" Foreground="{StaticResource colorLiso1}" 
+                       HorizontalAlignment="Left" 
+                       FontSize="15"
+                       FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       Margin="12,66,0,0"
+                       VerticalAlignment="Top" 
+                       Width="89" Height="28"/>
+                <TextBox HorizontalAlignment="Left"
+                         Margin="106,71,0,0"  
+                         TextWrapping="Wrap" 
+                         VerticalAlignment="Top" 
+                         Width="120"
+                         BorderBrush="{StaticResource color12}"
+                         Background="{StaticResource color13}"
+                         Text="{Binding Path=ProveedorActual.telefonoProvedor, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Content="Dirección" Foreground="{StaticResource colorLiso1}" 
+                       HorizontalAlignment="Left"
+                       FontSize="15"
+                       FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       Margin="12,94,0,0"
+                       VerticalAlignment="Top" 
+                       Width="89" Height="28"/>
+                <TextBox HorizontalAlignment="Left"
+                         Margin="106,99,0,0"  
+                         TextWrapping="Wrap" 
+                         VerticalAlignment="Top" 
+                         Width="120"
+                         BorderBrush="{StaticResource color12}"
+                         Background="{StaticResource color13}"
+                         Text="{Binding Path=ProveedorActual.DireccionProvedor, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Style="{StaticResource BotonesCrud}"
+                        Command="{Binding AgregarCommand}"
+                        Tag="{StaticResource color12}"
+                       Height="40" Margin="35,302,35,100">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="PlusCircle" Style="{StaticResource BotonCrudIcono}"/>
+                        <TextBlock Text="Agregar" Style="{StaticResource textoBotonCrudIcono}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource BotonesCrud}"
+                        Command="{Binding ActualizarCommand}"
+                        Tag="{StaticResource color12}" Height="40" Margin="35,347,35,55">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="PencilAlt" Style="{StaticResource BotonCrudIcono}"/>
+                        <TextBlock Text="Actualizar" Style="{StaticResource textoBotonCrudIcono}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource BotonesCrud}"
+                        Command="{Binding EliminarCommand}"
+                        Tag="{StaticResource color12}"
+                       Height="40" Margin="35,392,35,10">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="TrashCan" Style="{StaticResource BotonCrudIcono}"/>
+                        <TextBlock Text="Eliminar" Style="{StaticResource textoBotonCrudIcono}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>
+
